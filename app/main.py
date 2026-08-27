@@ -2,36 +2,22 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from . import database, ml_interface, simulator
-from .schemas import (
-    EngineState,
-    FaultRequest,
-    HealthResponse,
-    TelemetryPoint,
-    UAV,
-)
+from .schemas import EngineState, FaultRequest, HealthResponse, TelemetryPoint, UAV
 
 app = FastAPI(title="Engine Digital Twin API")
 
-
-# ---------------------------------------------------------
-# CORS
-# ---------------------------------------------------------
-# Your frontend is deployed on Vercel.
-# Add your Vercel domain here.
-#
-# Keep localhost for local frontend development.
-# ---------------------------------------------------------
-
 ALLOWED_ORIGINS = [
     "https://aerion-2.vercel.app",
+    "https://adityadeshmane08.github.io",
     "http://localhost:5173",
+    "http://localhost:4173",
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=ALLOWED_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
