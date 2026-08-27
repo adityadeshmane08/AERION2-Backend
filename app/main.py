@@ -14,7 +14,7 @@ ALLOWED_ORIGINS = [
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origins="https://aerion-2.vercel.app",
     allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
